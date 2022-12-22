@@ -16,7 +16,7 @@ class MyParser:
     def check_operator(self, op: str):
         return op in ("+", "-", "/", "*")
 
-    def check_operand(self, ope: str):
+    def extract_operand(self, ope: str):
         try:
             datatype, datavalue = ope.strip(")").split("(")
             return datatype, datavalue
