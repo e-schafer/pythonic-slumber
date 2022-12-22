@@ -1,0 +1,5 @@
+Time(4h50m) - Time(30m)
+Time(2h09m) * Number(4)
+Time(17h22m) + Time(4h59m)
+Time(1h45m) / Number(6)
+Number(8) * Time(10m)
