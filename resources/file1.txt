@@ -1,4 +1,0 @@
-Number(43) - Number(1)
-Number(9) * Number(9)
-Number(242) + Number(929)
-Number(121) / Number(23.9)
