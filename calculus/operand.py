@@ -1,5 +1,7 @@
 from abc import ABC
+from os import times_result
 import re
+from datetime import timedelta
 
 
 class Operand(ABC):
@@ -8,11 +10,13 @@ class Operand(ABC):
 
 
 class MyTime(Operand):
-    def __init__(self, timestr: str):
-        super().__init__(self.strtime_to_seconds(timestr))
+    def __init__(self, timestr: str = "", time_seconds: float = 0):
+        if timestr != "":
+            super().__init__(self.strtime_to_seconds(timestr))
+        else:
+            super().__init__(time_seconds)
 
-    @staticmethod
-    def strtime_to_seconds(val: str) -> int:
+    def strtime_to_seconds(self, val: str) -> int:
         re_pattern = re.compile(
             """((?P<hours>\\d*)h)?((?P<minutes>\\d*)m)?((?P<seconds>\\d*)s)?"""
         )
@@ -26,10 +30,19 @@ class MyTime(Operand):
                     + int(m.group("seconds") if m.group("seconds") else "0")
                 )
 
+    def __repr__(self) -> str:
+        return f"Time({timedelta(seconds=self.value_as_number)})"
+
 
 class MyNumber(Operand):
-    def __init__(self, num: str) -> None:
-        super().__init__(float(num))
+    def __init__(self, num_str: str = "", num_float: float = 0) -> None:
+        if num_str != "":
+            super().__init__(float(num_str))
+        else:
+            super().__init__(num_float)
+
+    def __repr__(self) -> str:
+        return f"Number({self.value_as_number})"
 
 
 class OperandFactory:
