@@ -1,7 +1,6 @@
 from abc import ABC
-from os import times_result
 import re
-from datetime import timedelta
+import time
 
 
 class Operand(ABC):
@@ -31,7 +30,9 @@ class MyTime(Operand):
                 )
 
     def __repr__(self) -> str:
-        return f"Time({timedelta(seconds=self.value_as_number)})"
+        return (
+            f"""Time({time.strftime("%Hh%Mm%Ss", time.gmtime(self.value_as_number))})"""
+        )
 
 
 class MyNumber(Operand):

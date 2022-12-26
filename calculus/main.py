@@ -1,5 +1,3 @@
-from time import time
-
 from operand import MyNumber, MyTime, Operand, OperandFactory
 
 
@@ -28,7 +26,6 @@ def compute(left_operand: Operand, righ_operand: Operand, operator: str):
             result = left_operand.value_as_number / righ_operand.value_as_number
         case _:
             raise Exception
-
     if isinstance(left_operand, MyTime) or isinstance(righ_operand, MyTime):
         return str(MyTime(time_seconds=result))
     else:
