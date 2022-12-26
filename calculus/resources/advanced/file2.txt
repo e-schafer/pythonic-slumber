@@ -1,7 +1,0 @@
-Time(35) * Multiply(34)
-Time(30s) * Multiply(2)
-Time(-8h00m) * Multiply(2)
-Time(32M) * Multiply(2)
-Time(30m) + Number(4)
-Time(20h) - Number(6)
-Number(2) / Time(40m)

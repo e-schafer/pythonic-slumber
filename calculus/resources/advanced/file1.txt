@@ -1,6 +1,0 @@
-Number(999999999999) - Number(232)
-Number(797) 
-Number(86) - Number(5
-Number(99) Number(0)
-299 - Number(24)
-Number(121) / Number(0)
