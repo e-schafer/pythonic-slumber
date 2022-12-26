@@ -7,6 +7,9 @@ class Operand(ABC):
     def __init__(self, myvalue: float):
         self.value_as_number: float = myvalue
 
+    def __call__(self):
+        return self.value_as_number
+
 
 class MyTime(Operand):
     def __init__(self, timestr: str = "", time_seconds: float = 0):

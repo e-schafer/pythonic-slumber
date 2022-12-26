@@ -1,8 +1,20 @@
+import itertools
+from glob import glob
 from operand import MyNumber, MyTime, Operand, OperandFactory
 
 
+def compute_file():
+    path = """E:\\pythonic-slumber\\calculus\\resources"""
+    files_list = glob(path + "\\*.txt")
+    for file_path in files_list:
+        with open(file_path, "r") as file:
+            print(f"Reading file -- {file_path}")
+            for line in file.readlines():
+                print(f"""    {line[0:-1]} -- {decompose_calculus_line(line)}""")
+
+
 def decompose_calculus_line(line: str):
-    match line.split(" "):
+    match line.strip("\n").split(" "):
         case [left_operand, ("+" | "-" | "*" | "/") as ope, right_operand]:
             return compute(
                 left_operand=OperandFactory.build(left_operand),
@@ -17,13 +29,13 @@ def compute(left_operand: Operand, righ_operand: Operand, operator: str):
     result = None
     match operator:
         case "+":
-            result = left_operand.value_as_number + righ_operand.value_as_number
+            result = left_operand() + righ_operand()
         case "-":
-            result = left_operand.value_as_number - righ_operand.value_as_number
+            result = left_operand() - righ_operand()
         case "*":
-            result = left_operand.value_as_number * righ_operand.value_as_number
+            result = left_operand() * righ_operand()
         case "/":
-            result = left_operand.value_as_number / righ_operand.value_as_number
+            result = left_operand() / righ_operand()
         case _:
             raise Exception
     if isinstance(left_operand, MyTime) or isinstance(righ_operand, MyTime):
@@ -34,9 +46,4 @@ def compute(left_operand: Operand, righ_operand: Operand, operator: str):
 
 if __name__ == "__main__":
     print("Hello World")
-    val = "Number(43) - Number(1)"
-    print(f"{val} -- {decompose_calculus_line(val)}")
-    val = "Number(121) / Number(23.9)"
-    print(f"{val} -- {decompose_calculus_line(val)}")
-    val = "Time(4h50m) - Time(30m)"
-    print(f"{val} -- {decompose_calculus_line(val)}")
+    compute_file()
