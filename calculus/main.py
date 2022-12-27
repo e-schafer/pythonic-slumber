@@ -10,7 +10,8 @@ def compute_file():
         with open(file_path, "r") as file:
             print(f"Reading file -- {file_path}")
             for line in file.readlines():
-                print(f"""    {line[0:-1]} -- {decompose_calculus_line(line)}""")
+                # remove EOL caracter.
+                print(f"""    {line[0:-1]} -- {decompose_calculus_line(line[0:-1])}""")
 
 
 def decompose_calculus_line(line: str):
