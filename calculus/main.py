@@ -1,4 +1,4 @@
-import itertools
+import functools
 from glob import glob
 from operand import MyNumber, MyTime, Operand, OperandFactory
 
@@ -9,9 +9,14 @@ def compute_file():
     for file_path in files_list:
         with open(file_path, "r") as file:
             print(f"Reading file -- {file_path}")
-            for line in file.readlines():
+            for index, line in enumerate(file.readlines()):
                 # remove EOL caracter.
-                print(f"""    {line[0:-1]} -- {decompose_calculus_line(line[0:-1])}""")
+                try:
+                    print(
+                        f"""    {line[0:-1]} ==> {decompose_calculus_line(line[0:-1])}"""
+                    )
+                except Exception as e:
+                    print(f"Error line {index+1}: {e}")
 
 
 def decompose_calculus_line(line: str):
@@ -23,7 +28,7 @@ def decompose_calculus_line(line: str):
                 operator=ope,
             )
         case _:
-            raise Exception(f"Not parseable line -- {line}")
+            raise Exception(f"Not parseable line -- line='{line}'")
 
 
 def compute(left_operand: Operand, righ_operand: Operand, operator: str):
@@ -46,5 +51,4 @@ def compute(left_operand: Operand, righ_operand: Operand, operator: str):
 
 
 if __name__ == "__main__":
-    print("Hello World")
     compute_file()
