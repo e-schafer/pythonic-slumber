@@ -1,22 +1,17 @@
-import functools
 from glob import glob
+from pprint import pprint
 from operand import MyNumber, MyTime, Operand, OperandFactory
 
 
-def compute_file():
-    path = """E:\\pythonic-slumber\\calculus\\resources"""
-    files_list = glob(path + "\\*.txt")
-    for file_path in files_list:
-        with open(file_path, "r") as file:
-            print(f"Reading file -- {file_path}")
-            for index, line in enumerate(file.readlines()):
-                # remove EOL caracter.
-                try:
-                    print(
-                        f"""    {line[0:-1]} ==> {decompose_calculus_line(line[0:-1])}"""
-                    )
-                except Exception as e:
-                    print(f"Error line {index+1}: {e}")
+def compute_file(file_path: str):
+    with open(file_path, "r") as file:
+        print(f"Reading file -- {file_path}")
+        for index, line in enumerate(file.readlines()):
+            # remove EOL caracter.
+            try:
+                print(f"""    {line[0:-1]} ==> {decompose_calculus_line(line[0:-1])}""")
+            except Exception as e:
+                print(f"Error line {index+1}: {e}")
 
 
 def decompose_calculus_line(line: str):
@@ -51,4 +46,7 @@ def compute(left_operand: Operand, righ_operand: Operand, operator: str):
 
 
 if __name__ == "__main__":
-    compute_file()
+    path = """.\\calculus\\resources"""
+    files_list = glob(path + "\\*.txt")
+    for file in files_list:
+        compute_file(file)
