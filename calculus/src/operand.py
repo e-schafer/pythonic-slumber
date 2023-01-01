@@ -7,7 +7,7 @@ class Operand(ABC):
     def __init__(self, myvalue: float):
         self.value_as_number: float = myvalue
 
-    def __call__(self):
+    def __call__(self) -> float:
         return self.value_as_number
 
 
