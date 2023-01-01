@@ -26,3 +26,8 @@ class OperandFactoryTest(unittest.TestCase):
     def test_build_MyTime_3(self):
         obj = OperandFactory.build("Time(2m100s)")
         self.assertEquals(obj.value_as_number, 220)
+
+
+if __name__ == "__main__":
+    runner = unittest.TextTestRunner()
+    runner.run(OperandFactoryTest())
