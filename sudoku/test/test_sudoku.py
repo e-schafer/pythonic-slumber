@@ -3,15 +3,27 @@ import unittest
 from sudoku.solver import Sudoku
 
 test_grille1 = [
-    [1, -1, -1, -1, -1, -1, -1, -1, 6],
-    [-1, -1, 6, -1, 2, -1, 7, -1, -1],
-    [7, 8, 9, 4, 5, -1, 1, -1, 3],
-    [-1, -1, -1, 8, -1, 7, -1, -1, 4],
-    [-1, -1, -1, -1, 3, -1, -1, -1, -1],
-    [-1, 9, -1, -1, -1, 4, 2, -1, 1],
-    [3, 1, 2, 9, 7, -1, -1, 4, -1],
-    [-1, 4, -1, -1, 1, 2, -1, 7, 8],
-    [9, -1, 8, -1, -1, -1, -1, -1, -1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 6],
+    [0, 0, 6, 0, 2, 0, 7, 0, 0],
+    [7, 8, 9, 4, 5, 0, 1, 0, 3],
+    [0, 0, 0, 8, 0, 7, 0, 0, 4],
+    [0, 0, 0, 0, 3, 0, 0, 0, 0],
+    [0, 9, 0, 0, 0, 4, 2, 0, 1],
+    [3, 1, 2, 9, 7, 0, 0, 4, 0],
+    [0, 4, 0, 0, 1, 2, 0, 7, 8],
+    [9, 0, 8, 0, 0, 0, 0, 0, 0],
+]
+
+test_grille1_solution = [
+    [1, 2, 3, 7, 8, 9, 4, 5, 6],
+    [4, 5, 6, 1, 2, 3, 7, 8, 9],
+    [7, 8, 9, 4, 5, 6, 1, 2, 3],
+    [2, 3, 1, 8, 9, 7, 5, 6, 4],
+    [5, 6, 4, 2, 3, 1, 8, 9, 7],
+    [8, 9, 7, 5, 6, 4, 2, 3, 1],
+    [3, 1, 2, 9, 7, 8, 6, 4, 5],
+    [6, 4, 5, 3, 1, 2, 9, 7, 8],
+    [9, 7, 8, 6, 4, 5, 3, 1, 2],
 ]
 
 test_sudoku = Sudoku(test_grille1, 3)
@@ -19,7 +31,7 @@ test_sudoku = Sudoku(test_grille1, 3)
 
 class SudokuTest(unittest.TestCase):
     def test_col_possibilities(self):
-        self.assertListEqual(test_sudoku.col_possibilities(0), [1, 7, 3, 9])
+        self.assertListEqual(test_sudoku.col_possibilities(0), [1, 3, 7, 9])
 
     def test_row_possibilities(self):
         self.assertListEqual(test_sudoku.row_possibilities(0), [1, 6])
@@ -40,13 +52,16 @@ class SudokuTest(unittest.TestCase):
         self.assertDictEqual(test_sudoku.sector_map(), expected)
 
     def test_sector_possibilities_1(self):
-        self.assertListEqual(test_sudoku.sector_possibilities(0, 0), [1, 7, 8, 6, 9])
+        self.assertListEqual(test_sudoku.sector_possibilities(0, 0), [1, 6, 7, 8, 9])
 
     def test_sector_possibilities_2(self):
         self.assertListEqual(test_sudoku.sector_possibilities(8, 8), [4, 7, 8])
 
     def test_sector_possibilities_3(self):
-        self.assertListEqual(test_sudoku.sector_possibilities(0, 8), [3, 9, 1, 4, 2, 8])
+        self.assertListEqual(test_sudoku.sector_possibilities(0, 8), [1, 2, 3, 4, 8, 9])
+
+    def test_solve(self):
+        self.assertEquals(test_sudoku.solve_grille(), test_grille1)
 
 
 if __name__ == "__main__":
