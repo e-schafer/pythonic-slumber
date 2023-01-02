@@ -1,5 +1,7 @@
 from pprint import pprint
 
+from solver import Sudoku
+
 
 grille1 = [
     [1, -1, -1, -1, -1, -1, -1, -1, 6],
@@ -15,5 +17,14 @@ grille1 = [
 
 
 if __name__ == "__main__":
-    print("hello")
-    pprint(grille1)
+    sudoku = Sudoku(grille=grille1, size=3)
+    # pprint(sudoku.reverse_sector_map()[0, 8])
+    pprint(sudoku.sector_possibilities(0, 8))
+    pprint(
+        list(
+            map(
+                lambda x: f"{x[0]}:{x[1]} -- {grille1[x[1]][x[0]]}",
+                sudoku.reverse_sector_map()[(0, 8)],
+            )
+        )
+    )
