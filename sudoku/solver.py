@@ -1,3 +1,4 @@
+from collections import deque
 import functools
 import itertools
 from pprint import pprint
@@ -6,9 +7,9 @@ UNDECLARED_CELL = 0
 
 
 class Sudoku:
-    def __init__(self, grille: list[list[int]], size: int):
-        self.grille = grille
+    def __init__(self, size: int):
         self.size = size
+        self.grille: list[list[int]]
 
     @functools.lru_cache
     def possible_values(self):
@@ -33,45 +34,62 @@ class Sudoku:
                 dict_coord[coord] = value
         return dict_coord
 
-    def col_possibilities(self, x: int) -> list[int]:
+    def col_possibilities(self, grille, x: int) -> list[int]:
         return sorted(
-            [
-                self.grille[i][x]
-                for i in range(0, self.size**2)
-                if self.grille[i][x] > UNDECLARED_CELL
-            ]
+            filter(
+                lambda x: x > UNDECLARED_CELL,
+                map(lambda i: grille[i][x], range(0, self.size**2)),
+            )
         )
 
-    def row_possibilities(self, y: int) -> list[int]:
-        return list(sorted(filter(lambda x: x != UNDECLARED_CELL, self.grille[y])))
+    def row_possibilities(self, grille: list[list[int]], y: int) -> list[int]:
+        return list(sorted(filter(lambda x: x != UNDECLARED_CELL, grille[y])))
 
-    def sector_possibilities(self, coord_x: int, coord_y: int) -> list[int]:
+    def sector_possibilities(
+        self, grille: list[list[int]], coord_x: int, coord_y: int
+    ) -> list[int]:
         return list(
             sorted(
                 filter(
                     lambda x: x > UNDECLARED_CELL,
                     map(
                         # x and y are flipped when accessing the initial grid du to the list of list
-                        lambda x: self.grille[x[1]][x[0]],
+                        lambda x: grille[x[1]][x[0]],
                         self.reverse_sector_map()[(coord_x, coord_y)],
                     ),
                 )
             )
         )
 
-    def solve_grille(self):
-        for y in range(0, self.size**2):
-            for x in range(0, self.size**2):
-                if self.grille[y][x] == 0:
-                    r_p = self.row_possibilities(y)
-                    c_p = self.col_possibilities(x)
-                    s_p = self.sector_possibilities(x, y)
+    def is_valid(self, grille: list[list[int]], x: int, y: int, val_to_check: int):
+        used_p: set[int] = set(
+            itertools.chain(
+                self.row_possibilities(grille, y),
+                self.col_possibilities(grille, x),
+                self.sector_possibilities(grille, x, y),
+            )
+        )
+        return val_to_check not in used_p
 
-                    used_p = set(itertools.chain(r_p, c_p, s_p))
-                    p = list(sorted(self.possible_values().difference(used_p)))
-
-                    if p == []:
-                        pprint(self.grille)
-                        raise Exception(f"Cant solve puzzle -- x={x}, y={y}")
-                    self.grille[y][x] = p[0]
-        return self.grille
+    def solve_grille(self, grille: list[list[int]], x: int = 0, y: int = 0) -> bool:
+        """ """
+        self.grille = grille
+        next_y, next_x = divmod((x + 1) + (y * self.size**2), self.size**2)
+        if x > 8 or y > 8:
+            # print(f"exit end of grid, x={x}, y={y}")
+            return True
+        if grille[y][x] == 0:
+            for val in range(1, self.size**2 + 1):
+                if self.is_valid(grille, x, y, val):
+                    # print(f"Try -- val={val}, x={x}, y={y}")
+                    grille[y][x] = val
+                    if self.solve_grille(grille, next_x, next_y):
+                        # print(f"Validate -- val={val}, x={x}, y={y}")
+                        return True
+                    grille[y][x] = 0
+        else:
+            # print(f"Skip cell -- x={x}, y={y}")
+            if self.solve_grille(grille, next_x, next_y):
+                return True
+        # print(f"End function -- x={x}, y={y}")
+        return False

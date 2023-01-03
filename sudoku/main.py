@@ -1,7 +1,7 @@
 from pprint import pprint
 
 from solver import Sudoku
-
+from copy import deepcopy
 
 grille1 = [
     [1, 0, 0, 0, 0, 0, 0, 0, 6],
@@ -17,5 +17,8 @@ grille1 = [
 
 
 if __name__ == "__main__":
-    sudoku = Sudoku(grille=grille1, size=3)
-    pprint(sudoku.solve_grille())
+    sudoku = Sudoku(size=3)
+    pprint(grille1)
+    sudoku.solve_grille(deepcopy(grille1), 0, 0)
+    print("----------------------------")
+    pprint(sudoku.grille)
