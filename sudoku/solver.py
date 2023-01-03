@@ -100,10 +100,10 @@ class Sudoku:
         y -- y coord
         val_to_check -- the value to check (1 to 9)
         --------------------------------------
-        niv1 : use for loop with a variable for accumulating values
-        niv2 : use a for comprehension with a nested if
-        niv3 : use map and filter
-        niv4 : use map and filter with lambda functions.
+        niv1 : use add operator
+        niv2 : use sum
+        niv3 : use itertools
+        + 0.5niv: if use a set
         """
         used_p: set[int] = set(
             itertools.chain(
