@@ -3,7 +3,7 @@ from pprint import pprint
 from solver import Sudoku
 from copy import deepcopy
 
-grille1 = [
+grid1 = [
     [1, 0, 0, 0, 0, 0, 0, 0, 6],
     [0, 0, 6, 0, 2, 0, 7, 0, 0],
     [7, 8, 9, 4, 5, 0, 1, 0, 3],
@@ -18,7 +18,7 @@ grille1 = [
 
 if __name__ == "__main__":
     sudoku = Sudoku(size=3)
-    pprint(grille1)
-    sudoku.solve_grille(deepcopy(grille1), 0, 0)
-    print("----------------------------")
-    pprint(sudoku.grille)
+    pprint(grid1)
+    sudoku.solve_grid(deepcopy(grid1), 0, 0)
+    print("-----------------------")
+    pprint(sudoku.result_grid)

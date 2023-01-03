@@ -27,6 +27,11 @@ def decompose_calculus_line(line: str):
 
 
 def compute(left_operand: Operand, righ_operand: Operand, operator: str):
+    """
+
+    -----------------------------------------------
+
+    """
     result = None
     match operator:
         case "+":

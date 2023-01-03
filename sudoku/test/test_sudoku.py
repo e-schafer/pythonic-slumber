@@ -2,7 +2,7 @@ import unittest
 
 from sudoku.solver import Sudoku
 
-test_grille1 = [
+grid1 = [
     [1, 0, 0, 0, 0, 0, 0, 0, 6],
     [0, 0, 6, 0, 2, 0, 7, 0, 0],
     [7, 8, 9, 4, 5, 0, 1, 0, 3],
@@ -14,7 +14,7 @@ test_grille1 = [
     [9, 0, 8, 0, 0, 0, 0, 0, 0],
 ]
 
-test_grille1_solution = [
+grid1_soluce = [
     [1, 2, 3, 7, 8, 9, 4, 5, 6],
     [4, 5, 6, 1, 2, 3, 7, 8, 9],
     [7, 8, 9, 4, 5, 6, 1, 2, 3],
@@ -31,12 +31,10 @@ test_sudoku = Sudoku(size=3)
 
 class SudokuTest(unittest.TestCase):
     def test_col_possibilities(self):
-        self.assertListEqual(
-            test_sudoku.col_possibilities(test_grille1, 0), [1, 3, 7, 9]
-        )
+        self.assertListEqual(test_sudoku.col_possibilities(grid1, 0), [1, 3, 7, 9])
 
     def test_row_possibilities(self):
-        self.assertListEqual(test_sudoku.row_possibilities(test_grille1, 0), [1, 6])
+        self.assertListEqual(test_sudoku.row_possibilities(grid1, 0), [1, 6])
 
     def test_sector_map(self):
         expected: dict[int, list[tuple[int, int]]] = {
@@ -55,28 +53,24 @@ class SudokuTest(unittest.TestCase):
 
     def test_sector_possibilities_1(self):
         self.assertListEqual(
-            test_sudoku.sector_possibilities(test_grille1, 0, 0), [1, 6, 7, 8, 9]
+            test_sudoku.sector_possibilities(grid1, 0, 0), [1, 6, 7, 8, 9]
         )
 
     def test_sector_possibilities_2(self):
-        self.assertListEqual(
-            test_sudoku.sector_possibilities(test_grille1, 8, 8), [4, 7, 8]
-        )
+        self.assertListEqual(test_sudoku.sector_possibilities(grid1, 8, 8), [4, 7, 8])
 
     def test_sector_possibilities_3(self):
         self.assertListEqual(
-            test_sudoku.sector_possibilities(test_grille1, 0, 8), [1, 2, 3, 4, 8, 9]
+            test_sudoku.sector_possibilities(grid1, 0, 8), [1, 2, 3, 4, 8, 9]
         )
 
     def test_solve(self):
-        test_sudoku.solve_grille(test_grille1, 0, 0)
+        test_sudoku.solve_grid(grid1, 0, 0)
         for index in range(
             0,
-            len(test_grille1_solution),
+            len(grid1_soluce),
         ):
-            self.assertListEqual(
-                test_sudoku.grille[index], test_grille1_solution[index]
-            )
+            self.assertListEqual(test_sudoku.result_grid[index], grid1_soluce[index])
 
 
 if __name__ == "__main__":

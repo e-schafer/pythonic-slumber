@@ -19,6 +19,14 @@ class MyTime(Operand):
             super().__init__(time_seconds)
 
     def strtime_to_seconds(self, val: str) -> int:
+        """Parse string of time to seconds
+
+        val -- time string '12h23m3s'
+        --------------------------------------------
+        niv1 : use split on h,m,s and use if elif else to detect each element
+        niv2 : use regex to detect elements
+        niv3 : use regex and pattern matching
+        """
         re_pattern = re.compile(
             """((?P<hours>\\d*)h)?((?P<minutes>\\d*)m)?((?P<seconds>\\d*)s)?"""
         )
@@ -52,6 +60,11 @@ class MyNumber(Operand):
 class OperandFactory:
     @staticmethod
     def build(ope: str) -> Operand:
+        """
+        -----------------------
+        niv1 : use if elif if
+        niv3 : use pattern matching
+        """
         match ope.strip(")").split("("):
             case ["Number", myvalue]:
                 return MyNumber(myvalue)
