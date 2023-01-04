@@ -26,15 +26,15 @@ grid1_soluce = [
     [9, 7, 8, 6, 4, 5, 3, 1, 2],
 ]
 
-test_sudoku = Sudoku(size=3)
+solver = Sudoku(size=3)
 
 
 class SudokuTest(unittest.TestCase):
     def test_col_possibilities(self):
-        self.assertListEqual(test_sudoku.col_possibilities(grid1, 0), [1, 3, 7, 9])
+        self.assertListEqual(solver.col_possibilities(grid1, 0), [1, 3, 7, 9])
 
     def test_row_possibilities(self):
-        self.assertListEqual(test_sudoku.row_possibilities(grid1, 0), [1, 6])
+        self.assertListEqual(solver.row_possibilities(grid1, 0), [1, 6])
 
     def test_sector_map(self):
         expected: dict[int, list[tuple[int, int]]] = {
@@ -49,28 +49,26 @@ class SudokuTest(unittest.TestCase):
             8: [(6, 6), (6, 7), (6, 8), (7, 6), (7, 7), (7, 8), (8, 6), (8, 7), (8, 8)],
         }
 
-        self.assertDictEqual(test_sudoku.sector_map(), expected)
+        self.assertDictEqual(solver.sector_map(), expected)
 
     def test_sector_possibilities_1(self):
-        self.assertListEqual(
-            test_sudoku.sector_possibilities(grid1, 0, 0), [1, 6, 7, 8, 9]
-        )
+        self.assertListEqual(solver.sector_possibilities(grid1, 0, 0), [1, 6, 7, 8, 9])
 
     def test_sector_possibilities_2(self):
-        self.assertListEqual(test_sudoku.sector_possibilities(grid1, 8, 8), [4, 7, 8])
+        self.assertListEqual(solver.sector_possibilities(grid1, 8, 8), [4, 7, 8])
 
     def test_sector_possibilities_3(self):
         self.assertListEqual(
-            test_sudoku.sector_possibilities(grid1, 0, 8), [1, 2, 3, 4, 8, 9]
+            solver.sector_possibilities(grid1, 0, 8), [1, 2, 3, 4, 8, 9]
         )
 
     def test_solve(self):
-        test_sudoku.solve_grid(grid1, 0, 0)
+        solver.solve_grid(grid1, 0, 0)
         for index in range(
             0,
             len(grid1_soluce),
         ):
-            self.assertListEqual(test_sudoku.result_grid[index], grid1_soluce[index])
+            self.assertListEqual(solver.result_grid[index], grid1_soluce[index])
 
 
 if __name__ == "__main__":
