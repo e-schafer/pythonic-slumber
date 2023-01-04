@@ -5,6 +5,13 @@ from calculus.operand import MyNumber, MyTime, Operand, OperandFactory
 class Filerunner():
     @staticmethod
     def compute_file(file_path: str):
+        """
+        ----------------------------------
+        niv1: read file without handling exception
+        niv2: read file with handling error
+        niv3: read file with 'with' instruction
+        +1niv: if locate the line in error.
+        """
         with open(file_path, "r") as file:
             print(f"Reading file -- {file_path}")
             for index, line in enumerate(file.readlines()):
@@ -21,7 +28,8 @@ class Filerunner():
         """
         ---------------------------------------
         niv1: split on space + if/else
-        niv2: regex
+        niv2: regex + if/else
+        niv3: regex + pattern matching
         """
         match line.strip("\n").split(" "):
             case [left_operand, ("+" | "-" | "*" | "/") as ope, right_operand]:
@@ -38,7 +46,7 @@ class Filerunner():
         """
 
         -----------------------------------------------
-        niv1: use if else for checking the operator
+        niv1: use if/else for checking the operator
         niv2: use pattern matching
         +1niv : if check error handling and use the correct data type on return (time or number)
 
