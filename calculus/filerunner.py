@@ -1,5 +1,5 @@
 from glob import glob
-from calculus.operand import MyNumber, MyTime, Operand, OperandFactory
+from operand import MyNumber, MyTime, Operand, OperandFactory
 
 
 class Filerunner():
@@ -48,7 +48,7 @@ class Filerunner():
         -----------------------------------------------
         niv1: use if/else for checking the operator
         niv2: use pattern matching
-        +1niv : if check error handling and use the correct data type on return (time or number)
+        +1niv : if check error and use the correct data type on return (time or number)
 
         """
         result = None
@@ -69,8 +69,3 @@ class Filerunner():
             return str(MyNumber(num_float=result))
 
 
-if __name__ == "__main__":
-    path = """.\\calculus\\resources"""
-    files_list = glob(path + "\\*.txt")
-    for file in files_list:
-        Filerunner.compute_file(file)
