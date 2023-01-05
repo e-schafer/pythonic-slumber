@@ -105,20 +105,24 @@ class Sudoku:
         niv3 : use itertools
         + 0.5niv: if use a set
         """
-        used_p: set[int] = set(
+        return val_to_check not in set(
             itertools.chain(
                 self.row_possibilities(grid, y),
                 self.col_possibilities(grid, x),
                 self.sector_possibilities(grid, x, y),
             )
         )
-        return val_to_check not in used_p
 
     def solve_grid(self, grid: list[list[int]], x: int = 0, y: int = 0) -> bool:
-        """ """
+        """Solve the grid by using backtrackings
+
+        grid -- sudoku grid to solve
+        x -- x coord for the current position
+        y -- y coord for the current position
+        """
         self.result_grid = grid
         next_y, next_x = divmod((x + 1) + (y * self.size**2), self.size**2)
-        if x > 8 or y > 8:
+        if x >= self.size**2 or y >= self.size**2:
             return True
         if grid[y][x] == 0:
             for val in range(1, self.size**2 + 1):

@@ -1,17 +1,18 @@
 # Playoff Python
 
 ## Langage
-Le but de tester les compétences du candidat sur python(3.11 ppur ce test)
+Le but de tester les compétences du candidat sur python(3.11 pour ce test)
 
-On notera au moins 3 niveaux de compétences:
+On notera au moins 3 niveaux de compétences du candidat:
 - Débutant:
   - principalement du scripting
   - faible utilisation des librairies natives de python
 - Intermediaire:
   - va au dela du scripting (debut de POO)
   - connait les concepts de python (ex: for comprehension)
+  - connait les bases des outils de pythons (venv, black ,setuptools, ..)
 - Expert:
-  - programme de manière structuré
+  - programme de manière structurée
   - connait bien les libs de python
   - programme fonctionnellement en python
   
