@@ -40,8 +40,7 @@ class Sudoku:
         --------------------------------------
         niv1 : use for loop with a variable for accumulating values
         niv2 : use a for comprehension with a nested if
-        niv3 : use map and filter
-        niv4 : use map and filter with lambda functions.
+        niv3 : use map and filter with lambda functions.
         """
         return sorted(
             filter(
@@ -58,8 +57,7 @@ class Sudoku:
         --------------------------------------
         niv1 : use for loop with a variable for accumulating values
         niv2 : use a for comprehension with a nested if
-        niv3 : use map and filter
-        niv4 : use map and filter with lambda functions.
+        niv3 : use map and filter with lambda functions.
         """
         return list(sorted(filter(lambda x: x != UNDECLARED_CELL, grid[y])))
 
@@ -74,8 +72,7 @@ class Sudoku:
         --------------------------------------
         niv1 : use for loop with a variable for accumulating values
         niv2 : use a for comprehension with a nested if
-        niv3 : use map and filter
-        niv4 : use map and filter with lambda functions.
+        niv3 : use map and filter with lambda functions.
         """
         return list(
             sorted(

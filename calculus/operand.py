@@ -62,7 +62,7 @@ class OperandFactory:
     def build(ope: str) -> Operand:
         """
         -----------------------
-        niv1 : use if elif if
+        niv1 : use if/else
         niv3 : use pattern matching
         """
         match ope.strip(")").split("("):
