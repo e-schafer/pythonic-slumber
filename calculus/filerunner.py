@@ -28,7 +28,7 @@ class Filerunner:
         ---------------------------------------
         niv1: split on space + if/else
         niv2: regex + if/else
-        niv3: regex + pattern matching
+        +1niv: if use pattern matching on result
         """
         # keep strip('\n') to be sure.
         match line.strip("\n").split(" "):

@@ -63,7 +63,7 @@ class OperandFactory:
         """
         -----------------------
         niv1 : use if/else
-        niv3 : use pattern matching
+        niv2 : use pattern matching
         """
         match ope.strip(")").split("("):
             case ["Number", myvalue]:

@@ -99,8 +99,8 @@ class Sudoku:
         --------------------------------------
         niv1 : use add operator
         niv2 : use sum
-        niv3 : use itertools
-        + 0.5niv: if use a set
+        niv3 : use itertools.chain
+        +1niv: if use a set
         """
         return val_to_check not in set(
             itertools.chain(
