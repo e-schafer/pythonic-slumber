@@ -18,7 +18,7 @@ On notera au moins 3 niveaux de compétences:
 ## Note pour l'examinateur
 Voici les topics que le playoff va vérifier chez le candidat : 
 * Conception OOP (class, héritage, self)
-* split de strings / regexp
+* Split de strings / regexp
 * Lecture / écriture dans un fichier
 * Conceptions de modules python (pas tout dans le même fichier...)
 * La gestion d'erreur (try/except)
@@ -31,3 +31,14 @@ Chaque fonction à completer peut être réalisée de plusieurs manières.
 Un exemple de chaque manière est décrite dans la solution.
 
 Des tests unitaires sont fournis ils devront passer au vert.
+
+
+## Setup
+``` bash
+# créer un environnement virtuel
+python -m venv .venv
+# active l'environnement
+.venv\Scripts\activate
+# install le package pour avoir une consistence dans l'appel des modules.
+pip install -e .
+```

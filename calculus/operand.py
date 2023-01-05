@@ -71,4 +71,4 @@ class OperandFactory:
             case ["Time", myvalue]:
                 return MyTime(myvalue)
             case _:
-                raise Exception(f"Unknown operand type -- type={ope}")
+                raise Exception(f"Unknown operand type -- type='{ope}'")

@@ -1,8 +1,7 @@
-from glob import glob
-from operand import MyNumber, MyTime, Operand, OperandFactory
+from calculus.operand import MyNumber, MyTime, Operand, OperandFactory
 
 
-class Filerunner():
+class Filerunner:
     @staticmethod
     def compute_file(file_path: str):
         """
@@ -31,6 +30,7 @@ class Filerunner():
         niv2: regex + if/else
         niv3: regex + pattern matching
         """
+        # keep strip('\n') to be sure.
         match line.strip("\n").split(" "):
             case [left_operand, ("+" | "-" | "*" | "/") as ope, right_operand]:
                 return Filerunner.compute(
@@ -67,5 +67,3 @@ class Filerunner():
             return str(MyTime(time_seconds=result))
         else:
             return str(MyNumber(num_float=result))
-
-
