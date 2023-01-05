@@ -22,10 +22,10 @@ class SolverTest(unittest.TestCase):
     """Test all subfunctions"""
 
     def test_col_possibilities(self):
-        self.assertListEqual(solver.col_possibilities(grid1, 0), [1, 3, 7, 9])
+        self.assertListEqual(sorted(solver.col_possibilities(grid1, 0)), [1, 3, 7, 9])
 
     def test_row_possibilities(self):
-        self.assertListEqual(solver.row_possibilities(grid1, 0), [1, 6])
+        self.assertListEqual(sorted(solver.row_possibilities(grid1, 0)), [1, 6])
 
     def test_sector_map(self):
         expected: dict[int, list[tuple[int, int]]] = {
