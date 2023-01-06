@@ -33,32 +33,23 @@ class Sudoku:
                 dict_coord[coord] = value
         return dict_coord
 
-    # def col_possibilities(self, grid, x: int) -> list[int]:
-    #     """List the already used values on the column.
-
-    #     grid -- the sudoku grid to analyze
-    #     coord_x -- x coordinate
-    #     --------------------------------------
-    #     niv1 : use for loop with a variable for accumulating values
-    #     niv2 : use a for comprehension with a nested if
-    #     niv3 : use map and filter with lambda functions.
-
-    #     """
-    #     return sorted(
-    #         filter(
-    #             lambda x: x > UNDECLARED_CELL,
-    #             map(lambda g: g[x], grid),
-    #         )
-    #     )
-
-    # def col_possibilities(self, grid, x: int) -> list[int]:
-    #     result = []
-    #     for row in grid:
-    #         if row[x] > 0:
-    #             result.append(row[x])
-    #     return result
     def col_possibilities(self, grid, x: int) -> list[int]:
-        return [row[x] for row in grid if row[x] > 0]
+        """List the already used values on the column.
+
+        grid -- the sudoku grid to analyze
+        coord_x -- x coordinate
+        --------------------------------------
+        niv1 : use for loop with a variable for accumulating values
+        niv2 : use a for comprehension with a nested if
+        niv3 : use map and filter with lambda functions.
+
+        """
+        return sorted(
+            filter(
+                lambda x: x > UNDECLARED_CELL,
+                map(lambda g: g[x], grid),
+            )
+        )
 
     def row_possibilities(self, grid: list[list[int]], y: int) -> list[int]:
         """List the already used values on the row.
