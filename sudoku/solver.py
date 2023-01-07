@@ -42,7 +42,6 @@ class Sudoku:
         niv1 : use for loop with a variable for accumulating values
         niv2 : use a for comprehension with a nested if
         niv3 : use map and filter with lambda functions.
-
         """
         return sorted(
             filter(

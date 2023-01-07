@@ -15,7 +15,7 @@ Completer les méthodes :
 - solve
 
 #### test/test_solver.py
-Completer les tests:
-- test_row_possibilities
-- test_col_possibilities
+Verifier les tests suivants
 - test_sector_possibilities_1
+- test_sector_possibilities_2
+- test_sector_possibilities_3
