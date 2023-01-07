@@ -29,7 +29,14 @@ grid2 = [
 
 if __name__ == "__main__":
     sudoku = Sudoku(size=3)
+    print("GRID 1")
+    pprint(grid1)
+    sudoku.solve_grid(deepcopy(grid1), 0, 0)
+    print("---------------------------------")
+    pprint(sudoku.result_grid)
+    print("================================")
+    print("GRID 2")
     pprint(grid2)
     sudoku.solve_grid(deepcopy(grid2), 0, 0)
-    print("-----------------------")
+    print("---------------------------------")
     pprint(sudoku.result_grid)
