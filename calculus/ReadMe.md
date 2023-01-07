@@ -1,4 +1,4 @@
-# Playoff Python Langage
+# Playoff Python -- Calculus
 
 ## Scenario 
 
@@ -35,6 +35,3 @@ Nom_du_fichier_en_entree:
 	* Operande Operator Operande = Resultat
 ```
 
-### Bonus
-
-L'outil doit être capable de parcourir l'arborescence et de découvrir tous les fichiers qui sont contenue dans le répertoire courant et ses sous répertoires 

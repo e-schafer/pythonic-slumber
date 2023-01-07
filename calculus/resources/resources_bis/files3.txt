@@ -1,0 +1,4 @@
+Number(8) * Time(10m)
+Number(8)  Time(10m)
+Number(9) * Number(9)
+Nmber(9) * Number(9)

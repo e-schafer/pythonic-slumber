@@ -1,4 +1,6 @@
+from glob import glob
 from calculus.operand import MyNumber, MyTime, Operand, OperandFactory
+from os import path
 
 
 class Filerunner:
@@ -17,10 +19,10 @@ class Filerunner:
                 # remove EOL caracter.
                 try:
                     print(
-                        f"""    {line[0:-1]} ==> {Filerunner.decompose_calculus_line(line[0:-1])}"""
+                        f"""    {line[0:-1]} = {Filerunner.decompose_calculus_line(line[0:-1])}"""
                     )
                 except Exception as e:
-                    print(f"    Error line {index+1}: {e}")
+                    print(f"    {line[0:-1]} : Error line {index+1}: {e}")
 
     @staticmethod
     def decompose_calculus_line(line: str):
@@ -67,3 +69,16 @@ class Filerunner:
             return str(MyTime(time_seconds=result))
         else:
             return str(MyNumber(num_float=result))
+
+
+if __name__ == "__main__":
+    """The point here is to have the list of files
+    -----------------------------------
+    niv1: try to build a recursive function with os.path
+    niv3: use glob in recursive mode.
+    """
+    print("hello calculus\n--------------------------")
+    path = """.\\calculus\\**"""
+    files_list = glob(path + "\\*.txt", recursive=True)
+    for file in files_list:
+        Filerunner.compute_file(file)
