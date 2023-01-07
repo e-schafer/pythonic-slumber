@@ -109,4 +109,27 @@ def sector_possibilities(self, grid: list[list[int]], coord_x: int, coord_y: int
 ```
 
 ## solve 
+For this method, you just need to check if it's work. The candidat can create as many other methods he wants.
+In the end the test suite SudokuTest must pass green.
 
+Attention points:
+- :exclamation: the final result must be saved in the class property ``self.result_grid``
+``` python
+    def solve_grid(self, grid: list[list[int]], x: int = 0, y: int = 0) -> bool:
+        self.result_grid = grid
+        next_y, next_x = divmod((x + 1) + (y * self.size**2), self.size**2)
+        if x >= self.size**2 or y >= self.size**2:
+            return True
+        if grid[y][x] == 0:
+            for val in range(1, self.size**2 + 1):
+                if self.is_valid(grid, x, y, val):
+                    grid[y][x] = val
+                    if self.solve_grid(grid, next_x, next_y):
+                        return True
+                    grid[y][x] = 0
+        else:
+            if self.solve_grid(grid, next_x, next_y):
+                return True
+        return False
+
+```
