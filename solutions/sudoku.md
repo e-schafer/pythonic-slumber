@@ -4,8 +4,7 @@
 
 ## col_possibilities
 Attention points:
-- detecting unsolved cell should be made by comparaison with the static variable 'UNDECLARED_CELL'
-#### niv1
+- :exclamation: detecting unsolved cell should be made by comparaison with the static variable 'UNDECLARED_CELL'.#### niv1
 ``` python
 def col_possibilities(self, grid, x: int) -> list[int]:
     """use for loop with a variable for accumulating values"""
@@ -37,8 +36,7 @@ def col_possibilities(self, grid, x: int) -> list[int]:
 
 ## row_possibilities
 Attention points:
-- detecting unsolved cell should be made by comparaison with the static variable 'UNDECLARED_CELL'
-#### niv1
+- :exclamation: detecting unsolved cell should be made by comparaison with the static variable 'UNDECLARED_CELL'.#### niv1
 ```python
 def row_possibilities(self, grid: list[list[int]], y: int) -> list[int]:
     """use for loop with a variable for accumulating values"""
