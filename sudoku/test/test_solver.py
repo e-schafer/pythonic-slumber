@@ -22,10 +22,10 @@ class SolverTest(unittest.TestCase):
     """Test all subfunctions"""
 
     def test_col_possibilities(self):
-        self.assertListEqual(sorted(solver.col_possibilities(grid1, 0)), [1, 3, 7, 9])
+        self.assertCountEqual(sorted(solver.col_possibilities(grid1, 0)), [1, 3, 7, 9])
 
     def test_row_possibilities(self):
-        self.assertListEqual(sorted(solver.row_possibilities(grid1, 0)), [1, 6])
+        self.assertCountEqual(sorted(solver.row_possibilities(grid1, 0)), [1, 6])
 
     def test_sector_map(self):
         expected: dict[int, list[tuple[int, int]]] = {
@@ -43,13 +43,13 @@ class SolverTest(unittest.TestCase):
         self.assertDictEqual(solver.sector_map(), expected)
 
     def test_sector_possibilities_1(self):
-        self.assertListEqual(solver.sector_possibilities(grid1, 0, 0), [1, 6, 7, 8, 9])
+        self.assertCountEqual(solver.sector_possibilities(grid1, 0, 0), [1, 6, 7, 8, 9])
 
     def test_sector_possibilities_2(self):
-        self.assertListEqual(solver.sector_possibilities(grid1, 8, 8), [4, 7, 8])
+        self.assertCountEqual(solver.sector_possibilities(grid1, 8, 8), [4, 7, 8])
 
     def test_sector_possibilities_3(self):
-        self.assertListEqual(
+        self.assertCountEqual(
             solver.sector_possibilities(grid1, 0, 8), [1, 2, 3, 4, 8, 9]
         )
 
