@@ -22,10 +22,12 @@ class SolverTest(unittest.TestCase):
     """Test all subfunctions"""
 
     def test_col_possibilities(self):
-        self.assertCountEqual(sorted(solver.col_possibilities(grid1, 0)), [1, 3, 7, 9])
+        # check values for column 0
+        self.assertCountEqual(solver.col_possibilities(grid1, 0), [1, 3, 7, 9])
 
     def test_row_possibilities(self):
-        self.assertCountEqual(sorted(solver.row_possibilities(grid1, 0)), [1, 6])
+        # check values for row 0
+        self.assertCountEqual(solver.row_possibilities(grid1, 0), [1, 6])
 
     def test_sector_map(self):
         expected: dict[int, list[tuple[int, int]]] = {
@@ -43,13 +45,16 @@ class SolverTest(unittest.TestCase):
         self.assertDictEqual(solver.sector_map(), expected)
 
     def test_sector_possibilities_1(self):
-        self.assertCountEqual(solver.sector_possibilities(grid1, 0, 0), [1, 6, 7, 8, 9])
+        # check values for the sector associated with the cell 0,0
+        self.assertListEqual(solver.sector_possibilities(grid1, 0, 0), [1, 6, 7, 8, 9])
 
     def test_sector_possibilities_2(self):
-        self.assertCountEqual(solver.sector_possibilities(grid1, 8, 8), [4, 7, 8])
+        # check values for the sector associated with the cell 8,8
+        self.assertListEqual(solver.sector_possibilities(grid1, 8, 8), [4, 7, 8])
 
     def test_sector_possibilities_3(self):
-        self.assertCountEqual(
+        # check values for the sector associated with the cell 0,8
+        self.assertListEqual(
             solver.sector_possibilities(grid1, 0, 8), [1, 2, 3, 4, 8, 9]
         )
 
