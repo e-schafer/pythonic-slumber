@@ -19,14 +19,15 @@ class MyTime(Operand):
             super().__init__(time_seconds)
 
     def strtime_to_seconds(self, val: str) -> int:
-        """Parse string of time to seconds
+        """Parse string of time to seconds.
 
-        val -- time string '12h23m3s'
+        val -- time string like '12h23m3s'
         --------------------------------------------
         niv1 : use split on h,m,s and use if elif else to detect each element
         niv2 : use regex to detect elements
         niv3 : use regex and pattern matching
         """
+        # We need to build our own as the format doesn't comply the norm iso8061
         re_pattern = re.compile(
             """((?P<hours>\\d*)h)?((?P<minutes>\\d*)m)?((?P<seconds>\\d*)s)?"""
         )
@@ -70,5 +71,7 @@ class OperandFactory:
                 return MyNumber(myvalue)
             case ["Time", myvalue]:
                 return MyTime(myvalue)
+            case [_ as typ, myvalue]:
+                raise Exception(f"Unknown operand type -- type='{typ}'")
             case _:
-                raise Exception(f"Unknown operand type -- type='{ope}'")
+                raise Exception(f"Unparseable operand -- type='{ope}'")

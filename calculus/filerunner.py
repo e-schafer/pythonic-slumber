@@ -14,19 +14,19 @@ class Filerunner:
         +1niv: if locate the line in error.
         """
         with open(file_path, "r") as file:
-            print(f"Reading file -- {file_path}")
+            print(f"--------------------------\nReading file -- {file_path}")
             for index, line in enumerate(file.readlines()):
                 # remove EOL caracter.
                 try:
                     print(
-                        f"""    {line[0:-1]} = {Filerunner.decompose_calculus_line(line[0:-1])}"""
+                        f"""    {index+1}:OK    {line[0:-1]} = {Filerunner.decompose_calculus_line(line[0:-1])}"""
                     )
                 except Exception as e:
-                    print(f"    {line[0:-1]} : Error line {index+1}: {e}")
+                    print(f"    {index+1}:Error {line[0:-1]}:  {e}")
 
     @staticmethod
     def decompose_calculus_line(line: str):
-        """
+        """Decompose your string in operands and operator
         ---------------------------------------
         niv1: split on space + if/else
         niv2: regex + if/else
@@ -40,18 +40,19 @@ class Filerunner:
                     righ_operand=OperandFactory.build(right_operand),
                     operator=ope,
                 )
+            case [_, _ as ope, _]:
+                raise Exception(f"Unknown operator -- operator='{ope}'")
             case _:
                 raise Exception(f"Not parseable line -- line='{line}'")
 
     @staticmethod
     def compute(left_operand: Operand, righ_operand: Operand, operator: str):
-        """
-
+        """Do the magic =D
         -----------------------------------------------
         niv1: use if/else for checking the operator
         niv2: use pattern matching
-        +1niv : if check error and use the correct data type on return (time or number)
-
+        +1niv : if check error
+        +1niv : use the correct data type on return (time or number)
         """
         result = None
         match operator:
