@@ -1,7 +1,7 @@
 # Calculus -- examinator guide
 
 ## filerunner.py
-We mainly check if the candidat know how to read a file in python.
+We mainly check if the candidat know how to read a files in python.
 
 ## operand.py
 We will no try to see if the candidat have all the basics of OOP, but we check if he knows some stuff on python model object.

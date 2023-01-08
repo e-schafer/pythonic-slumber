@@ -85,11 +85,6 @@ class Filerunner:
 
 
 if __name__ == "__main__":
-    """The point here is to have the list of files
-    -----------------------------------
-    niv1: try to build a recursive function with os.path
-    niv3: use glob in recursive mode.
-    """
     print("hello calculus\n--------------------------")
     path = """.\\calculus\\**"""
     Filerunner.find_files_and_compute(path)
