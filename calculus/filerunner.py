@@ -5,6 +5,18 @@ from os import path
 
 class Filerunner:
     @staticmethod
+    def find_files_and_compute(folder_path: str):
+        """The point here is to have the list of files
+        -----------------------------------
+        niv1: try to build a recursive function with os.path
+        niv3: use glob in recursive mode.
+        """
+        [
+            Filerunner.compute_file(file)
+            for file in glob(folder_path + "\\*.txt", recursive=True)
+        ]
+
+    @staticmethod
     def compute_file(file_path: str):
         """
         ----------------------------------
@@ -67,9 +79,9 @@ class Filerunner:
             case _:
                 raise Exception
         if isinstance(left_operand, MyTime) or isinstance(righ_operand, MyTime):
-            return str(MyTime(time_seconds=result))
+            return MyTime(time_seconds=result)
         else:
-            return str(MyNumber(num_float=result))
+            return MyNumber(num_float=result)
 
 
 if __name__ == "__main__":
@@ -80,6 +92,4 @@ if __name__ == "__main__":
     """
     print("hello calculus\n--------------------------")
     path = """.\\calculus\\**"""
-    files_list = glob(path + "\\*.txt", recursive=True)
-    for file in files_list:
-        Filerunner.compute_file(file)
+    Filerunner.find_files_and_compute(path)

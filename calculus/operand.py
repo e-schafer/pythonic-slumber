@@ -10,24 +10,32 @@ class Operand(ABC):
     def __call__(self) -> float:
         return self.value_as_number
 
+    def __eq__(self, other) -> bool:
+        return self.value_as_number == other.value_as_number
+
 
 class MyTime(Operand):
     def __init__(self, timestr: str = "", time_seconds: float = 0):
         if timestr != "":
             super().__init__(self.strtime_to_seconds(timestr))
-        else:
+        elif time_seconds >= 0:
             super().__init__(time_seconds)
+        else:
+            raise Exception(
+                f"Invalid argument -- timestr='{timestr}', time_seconds='{time_seconds}'"
+            )
 
     def strtime_to_seconds(self, val: str) -> int:
         """Parse string of time to seconds.
+        We need to build our own as the format doesn't comply the norm iso8061.
 
-        val -- time string like '12h23m3s'
+        val -- time string like '12h123m366s'
         --------------------------------------------
         niv1 : use split on h,m,s and use if elif else to detect each element
         niv2 : use regex to detect elements
         niv3 : use regex and pattern matching
         """
-        # We need to build our own as the format doesn't comply the norm iso8061
+        #
         re_pattern = re.compile(
             """((?P<hours>\\d*)h)?((?P<minutes>\\d*)m)?((?P<seconds>\\d*)s)?"""
         )
