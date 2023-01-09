@@ -74,12 +74,17 @@ class OperandFactory:
         niv1 : use if/else
         niv2 : use pattern matching
         """
-        match ope.strip(")").split("("):
-            case ["Number", myvalue]:
-                return MyNumber(myvalue)
-            case ["Time", myvalue]:
-                return MyTime(myvalue)
-            case [_ as typ, myvalue]:
-                raise Exception(f"Unknown operand type -- type='{typ}'")
-            case _:
-                raise Exception(f"Unparseable operand -- type='{ope}'")
+        re_pattern = re.compile("""(?P<type>\\w*)\\((?P<value>.*)\\)""")
+        match re_pattern.search(ope):
+            case None:
+                raise Exception(f"""Unparseable operand -- type='{ope}'""")
+            case m:
+                match m.groupdict():
+                    case {"type": "Number", "value": _ as myvalue}:
+                        return MyNumber(myvalue)
+                    case {"type": "Time", "value": _ as myvalue}:
+                        return MyTime(myvalue)
+                    case {"type": _ as typ}:
+                        raise Exception(f"""Unknown operand type -- type='{typ}'""")
+                    case _:
+                        raise Exception(f"""Unparseable operand -- type='{ope}'""")
