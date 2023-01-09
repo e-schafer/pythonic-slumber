@@ -5,7 +5,7 @@ from os import path
 
 class Filerunner:
     @staticmethod
-    def find_files_and_compute(folder_path: str):
+    def find_files_and_compute(root_folder_path: str):
         """The point here is to have the list of files
         -----------------------------------
         niv1: try to build a recursive function with os.path
@@ -13,7 +13,7 @@ class Filerunner:
         """
         [
             Filerunner.compute_file(file)
-            for file in glob(folder_path + "\\*.txt", recursive=True)
+            for file in glob(root_folder_path + "\\*.txt", recursive=True)
         ]
 
     @staticmethod
