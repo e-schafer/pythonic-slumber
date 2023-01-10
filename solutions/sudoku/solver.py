@@ -38,16 +38,29 @@ class Sudoku:
 
         grid -- the sudoku grid to analyze
         coord_x -- x coordinate
+        --------------------------------------
+        niv1 : use for loop with a variable for accumulating values
+        niv2 : use a for comprehension with a nested if
+        niv3 : use map and filter with lambda functions.
         """
-        pass
+        return sorted(
+            filter(
+                lambda x: x > UNDECLARED_CELL,
+                map(lambda g: g[x], grid),
+            )
+        )
 
     def row_possibilities(self, grid: list[list[int]], y: int) -> list[int]:
         """List the already used values on the row.
 
         grid -- the sudoku grid to analyze
         coord_y -- y coordinate
+        --------------------------------------
+        niv1 : use for loop with a variable for accumulating values
+        niv2 : use a for comprehension with a nested if
+        niv3 : use map and filter with lambda functions.
         """
-        pass
+        return list(sorted(filter(lambda x: x != UNDECLARED_CELL, grid[y])))
 
     def sector_possibilities(
         self, grid: list[list[int]], coord_x: int, coord_y: int
@@ -57,8 +70,23 @@ class Sudoku:
         grid -- the sudoku grid to analyze
         coord_x -- x coordinate
         coord_y -- y coordinate
+        --------------------------------------
+        niv1 : use for loop with a variable for accumulating values
+        niv2 : use a for comprehension with a nested if
+        niv3 : use map and filter with lambda functions.
         """
-        pass
+        return list(
+            sorted(
+                filter(
+                    lambda x: x > UNDECLARED_CELL,
+                    map(
+                        # x and y are flipped when accessing the initial grid du to the list of list
+                        lambda x: grid[x[1]][x[0]],
+                        self.reverse_sector_map()[(coord_x, coord_y)],
+                    ),
+                )
+            )
+        )
 
     def is_valid(
         self, grid: list[list[int]], x: int, y: int, val_to_check: int
@@ -69,6 +97,11 @@ class Sudoku:
         x -- x coord
         y -- y coord
         val_to_check -- the value to check (1 to 9)
+        --------------------------------------
+        niv1 : use add operator
+        niv2 : use sum
+        niv3 : use itertools.chain
+        +1niv: if use a set
         """
         return val_to_check not in set(
             itertools.chain(
@@ -85,4 +118,18 @@ class Sudoku:
         x -- x coord for the current position
         y -- y coord for the current position
         """
-        pass
+        self.result_grid = grid
+        next_y, next_x = divmod((x + 1) + (y * self.size**2), self.size**2)
+        if x >= self.size**2 or y >= self.size**2:
+            return True
+        if grid[y][x] == 0:
+            for val in range(1, self.size**2 + 1):
+                if self.is_valid(grid, x, y, val):
+                    grid[y][x] = val
+                    if self.solve_grid(grid, next_x, next_y):
+                        return True
+                    grid[y][x] = 0
+        else:
+            if self.solve_grid(grid, next_x, next_y):
+                return True
+        return False

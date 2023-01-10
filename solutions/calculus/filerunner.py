@@ -6,8 +6,15 @@ from os import path
 class Filerunner:
     @staticmethod
     def find_files_and_compute(root_folder_path: str):
-        """The point here is to have the list of files"""
-        pass
+        """The point here is to have the list of files
+        -----------------------------------
+        niv1: try to build a recursive function with os.path
+        niv3: use glob in recursive mode.
+        """
+        [
+            Filerunner.compute_file(file)
+            for file in glob(root_folder_path + "\\*.txt", recursive=True)
+        ]
 
     @staticmethod
     def compute_file(file_path: str):
@@ -52,8 +59,29 @@ class Filerunner:
 
     @staticmethod
     def compute(left_operand: Operand, righ_operand: Operand, operator: str):
-        """Do the magic =D"""
-        pass
+        """Do the magic =D
+        -----------------------------------------------
+        niv1: use if/else for checking the operator
+        niv2: use pattern matching
+        +1niv : if check error
+        +1niv : use the correct data type on return (time or number)
+        """
+        result = None
+        match operator:
+            case "+":
+                result = left_operand() + righ_operand()
+            case "-":
+                result = left_operand() - righ_operand()
+            case "*":
+                result = left_operand() * righ_operand()
+            case "/":
+                result = left_operand() / righ_operand()
+            case _:
+                raise Exception
+        if isinstance(left_operand, MyTime) or isinstance(righ_operand, MyTime):
+            return MyTime(time_seconds=result)
+        else:
+            return MyNumber(num_float=result)
 
 
 if __name__ == "__main__":
