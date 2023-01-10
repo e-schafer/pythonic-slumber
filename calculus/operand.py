@@ -72,7 +72,8 @@ class OperandFactory:
         """
         -----------------------
         niv1 : use if/else
-        niv2 : use pattern matching
+        niv2 : use regex
+        niv3 : use pattern matching and regex
         """
         re_pattern = re.compile("""(?P<type>\\w*)\\((?P<value>.*)\\)""")
         match re_pattern.search(ope):

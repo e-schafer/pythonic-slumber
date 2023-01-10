@@ -5,14 +5,13 @@ We mainly check if the candidat know how to find and read a files in python.
 
 ### Filerunner.find_files_and_compute
 ### niv1
-There is no point in trying to reinvent the wheel. The `glob` module is the best way to find files in a folder.
+The easiest way to find files in a folder is to use the `os.listdir` function. But this function only return files in the current folder. So we must use a recursive function to find files in subfolders.
 
 ``` python
 @staticmethod
 def find_files_and_compute(root_folder_path: str):
     """try to build a recursive function with os.path"""
 	files = os.listdir(folder)
-	result = ''
 	# Python simple foreach syntax.
 	for file in files:
 		currentFile = path.join(folder, file)
@@ -23,7 +22,8 @@ def find_files_and_compute(root_folder_path: str):
 ```
 
 ### niv2-3
-The `glob` module is the best way to find files in a folder. The `recursive` parameter is the key to find files in subfolders.
+The `glob` module is the best way to find files in a folder.
+The `recursive` parameter is the key to find files in subfolders.
 
 ``` python
 @staticmethod
@@ -128,4 +128,24 @@ def build(ope: str) -> Operand:
             raise Exception(f"Unknown operand type -- type='{typ}'")
         case _:
             raise Exception(f"Unparseable operand -- type='{ope}'")
+```
+
+#### niv3
+``` python
+def build(ope: str) -> Operand:
+    """use pattern matching and regex"""
+    re_pattern = re.compile("""(?P<type>\\w*)\\((?P<value>.*)\\)""")
+    match re_pattern.search(ope):
+        case None:
+            raise Exception(f"""Unparseable operand -- type='{ope}'""")
+        case m:
+            match m.groupdict():
+                case {"type": "Number", "value": _ as myvalue}:
+                    return MyNumber(myvalue)
+                case {"type": "Time", "value": _ as myvalue}:
+                    return MyTime(myvalue)
+                case {"type": _ as typ}:
+                    raise Exception(f"""Unknown operand type -- type='{typ}'""")
+                case _:
+                    raise Exception(f"""Unparseable operand -- type='{ope}'""")
 ```
