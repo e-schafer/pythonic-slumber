@@ -33,6 +33,8 @@ class MyTime(Operand):
         """
         pass
 
+    # Create a function for formating the data type in string 'Time(12h34m06s)'
+
 
 class MyNumber(Operand):
     def __init__(self, num_str: str = "", num_float: float = 0) -> None:
@@ -40,6 +42,8 @@ class MyNumber(Operand):
             super().__init__(float(num_str))
         else:
             super().__init__(num_float)
+
+    # Create a function for formating the data type in string 'Number(12.9)'
 
 
 class OperandFactory:
