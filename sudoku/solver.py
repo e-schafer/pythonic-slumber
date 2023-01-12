@@ -1,8 +1,8 @@
-from collections import deque
 import functools
 import itertools
-from pprint import pprint
 import re
+from collections import deque
+from pprint import pprint
 
 UNDECLARED_CELL = 0
 
@@ -39,6 +39,7 @@ class Sudoku:
         grid -- the sudoku grid to analyze
         coord_x -- x coordinate
         """
+        # TODO: implement this method
         pass
 
     def row_possibilities(self, grid: list[list[int]], y: int) -> list[int]:
@@ -47,6 +48,7 @@ class Sudoku:
         grid -- the sudoku grid to analyze
         coord_y -- y coordinate
         """
+        # TODO
         pass
 
     def sector_possibilities(
@@ -58,6 +60,7 @@ class Sudoku:
         coord_x -- x coordinate
         coord_y -- y coordinate
         """
+        # TODO
         pass
 
     def is_valid(
@@ -85,4 +88,5 @@ class Sudoku:
         x -- x coord for the current position
         y -- y coord for the current position
         """
+        # TODO
         pass

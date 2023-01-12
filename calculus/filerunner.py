@@ -1,6 +1,7 @@
 from glob import glob
-from calculus.operand import MyNumber, MyTime, Operand, OperandFactory
 from os import path
+
+from calculus.operand import MyNumber, MyTime, Operand, OperandFactory
 
 
 class Filerunner:
@@ -53,6 +54,7 @@ class Filerunner:
     @staticmethod
     def compute(left_operand: Operand, righ_operand: Operand, operator: str):
         """Do the magic =D"""
+        # TODO
         pass
 
 

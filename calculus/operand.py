@@ -1,6 +1,6 @@
-from abc import ABC
 import re
 import time
+from abc import ABC
 
 
 class Operand(ABC):
@@ -34,6 +34,7 @@ class MyTime(Operand):
         pass
 
     # Create a function for formating the data type in string 'Time(12h34m06s)'
+    # TODO
 
 
 class MyNumber(Operand):
@@ -44,10 +45,12 @@ class MyNumber(Operand):
             super().__init__(num_float)
 
     # Create a function for formating the data type in string 'Number(12.9)'
+    # TODO
 
 
 class OperandFactory:
     @staticmethod
     def build(ope: str) -> Operand:
         """Build an operand from a string."""
+        # TODO
         pass
