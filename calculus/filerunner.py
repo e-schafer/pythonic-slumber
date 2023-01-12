@@ -8,6 +8,7 @@ class Filerunner:
     @staticmethod
     def find_files_and_compute(root_folder_path: str):
         """The point here is to have the list of files"""
+        # TODO
         pass
 
     @staticmethod
