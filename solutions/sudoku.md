@@ -34,7 +34,7 @@ def col_possibilities(self, grid, x: int) -> list[int]:
         )
     )
 ```
-
+---
 ## row_possibilities
 Attention points:
 - :exclamation: detecting unsolved cell should be made by comparaison with the static variable 'UNDECLARED_CELL'.
@@ -60,7 +60,7 @@ def row_possibilities(self, grid: list[list[int]], y: int) -> list[int]:
     """use map and filter with lambda functions."""
     return list(sorted(filter(lambda x: x != UNDECLARED_CELL, grid[y])))
 ```
-
+---
 ## sector_possibilities
 Attention points:
 - :x: using ``reverse_sector_map()`` is highly recommend. Recomputing the sector cells each time is considered a bummer.
@@ -107,7 +107,7 @@ def sector_possibilities(self, grid: list[list[int]], coord_x: int, coord_y: int
         )
     )
 ```
-
+---
 ## solve 
 For this method, you just need to check if it's work. The candidat can create as many other methods he wants.
 In the end the test suite SudokuTest must pass green.

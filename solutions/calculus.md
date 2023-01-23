@@ -36,7 +36,7 @@ def find_files_and_compute(root_folder_path: str):
 
 ```
 
-
+---
 ---
 ## operand.py
 We will no try to see if the candidat have all the basics of OOP, but we check if he knows some stuff on python model object.
@@ -94,7 +94,7 @@ def strtime_to_seconds(self, val: str) -> int:
             )
 
 ```
-
+---
 
 ### OperandFactory.build()
 
