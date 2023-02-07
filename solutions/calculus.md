@@ -132,6 +132,7 @@ def build(ope: str) -> Operand:
 
 #### niv3
 ``` python
+@staticmethod
 def build(ope: str) -> Operand:
     """use pattern matching and regex"""
     re_pattern = re.compile("""(?P<type>\\w*)\\((?P<value>.*)\\)""")
